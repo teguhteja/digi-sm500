@@ -67,7 +67,7 @@ digiwtcp will generate a result file after doing the process of sending the file
 ```
 <br/>
 
-for documentation please look at [doc/TWSWTCP.pdf](https://https://github.com/teguhteja/digi-sm500/doc/TWSWTCP.pdf) 
+for documentation please look at [doc/TWSWTCP.pdf](https://github.com/teguhteja/digi-sm500/doc/TWSWTCP.pdf) 
 <br><br>
 ## What files are sent to the weighing machine ?
 Like the example above to send a file using the .DAT format which contains numbers in hex format. Then F37 as a table is used in operations. Try to read other tables using command :
@@ -92,7 +92,7 @@ for i in range(1,100):
 <br>
 
 ## What formats are sent to the weighing machine ?
-When open a .dat file from a weighing machine and find a long number format in hex. Based on the documentation from [doc/jbptunikompp-gdl-s1-2006-didinjamal-2857-jurnal_d-n.doc](https://https://github.com/teguhteja/digi-sm500/doc/jbptunikompp-gdl-s1-2006-didinjamal-2857-jurnal_d-n.doc) in table 3-1 and adapted to the Digi-Map and Digi-Net applications then 1 data ends at C000.<br>
+When open a .dat file from a weighing machine and find a long number format in hex. Based on the documentation from [doc/jbptunikompp-gdl-s1-2006-didinjamal-2857-jurnal_d-n.doc](https://github.com/teguhteja/digi-sm500/blob/master/doc/jbptunikompp-gdl-s1-2006-didinjamal-2857-jurnal_d-n.doc?raw=true) in table 3-1 and adapted to the Digi-Map and Digi-Net applications then 1 data ends at C000.<br>
 as an example
 ```
 00000004004A00005D208D010000001109320004000000000997000000000000000000000000800060000000000000000000000713494D424F4F5354204C4F5A454E4745532035530C00
@@ -114,7 +114,27 @@ when made into the description table
 | 11 | Name Record Size(NRS) | 2         | 13                                                      | Length of name record.  Hex Format. 13=19(DEC) (19+1)*2=40 |
 | 12 | COMMODITY NAME        | (NRS+1)*2<br>(19+1)*2=40 | 494D424F4F5354 204C4F5A454E47 45532035530C              | 49=I, 4D=M, 42=B ... then  IMBOOST LOZENGES 5S             |
 | 13 | BCC                   | 2         | 00                                                      | Default format  from Digi-Net                               |
+<br>
 
+On record length data to prove this field by calculating the length of the record. because in hex it is considered 2 characters so it must be multiplied by 2. Example 4A(HEX) = 74(DEC) that mean there are 148 char (74 * 2 ). to make it easier calculate from hex to dec, please look references [2]
+<br>
+```python
+>>> A = "00000004004A00005D208D010000001109320004000000000997000000000000000000000000800060000000000000000000000713494D424F4F5354204C4F5A454E4745532035530C00"
+>>> len(A)
+148
+```
+<br>
+Same as data record length to prove the field name record size by calculating the length of the record. because in hex it is considered 2 characters so it must be multiplied by 2 which was previously added by 1 due to the addition of C0. Example
+
+```python
+>>> A = "494D424F4F5354204C4F5A454E4745532035530C"
+>>> len(A)
+40
+>>> B = "IMBOOST LOZENGES 5S"
+>>> len(B)
+19
+
+```
 
 <br/>For convert COMMODITY NAME from HEX to ASCI then use code below :
 
@@ -124,7 +144,7 @@ def my_convert_hex(hex_string):
     return bytes_object.decode("ASCII")
 
 ```
-
+or to look easier hex to ascii please look reference [1]
 ### Reference
 1. [Hex to ASCII ](https://www.rapidtables.com/convert/number/hex-to-ascii.html)
 2. [Hex to Dec](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
