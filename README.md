@@ -23,6 +23,7 @@ To overcome the problem of entering data into the scales automatically, several 
 3. What formats are sent to the weighing machine?
 <br/>
 <br/>
+
 ## How to skip the Digi-Map and digi-net process ?
 after looking for the use of digi SM500 found the digiwtcp can send files to the scales using the format 
 
