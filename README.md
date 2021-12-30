@@ -145,6 +145,15 @@ def my_convert_hex(hex_string):
 
 ```
 or to look easier hex to ascii please look reference [1]
+
+## Running in Linux
+
+Please using wine to run the digiwtcp with same command
+
+```sh
+wine digiwtcp [command] SM[IP]F[table].DAT
+```
+
 ### Reference
 1. [Hex to ASCII ](https://www.rapidtables.com/convert/number/hex-to-ascii.html)
 2. [Hex to Dec](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
