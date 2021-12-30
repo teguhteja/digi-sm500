@@ -123,3 +123,7 @@ def my_convert_hex(hex_string):
     return bytes_object.decode("ASCII")
 
 ```
+
+### Reference
+1. [Hex to ASCII ](https://www.rapidtables.com/convert/number/hex-to-ascii.html)
+2. [Hex to Dec](https://www.rapidtables.com/convert/number/hex-to-decimal.html)
