@@ -1,0 +1,14 @@
+{
+    "-1": "Open file error", 
+    "-2": "Read from file error", 
+    "-3":"Write to file error",
+    "-4":"Network initialize error",
+    "-5":"Network open error",
+    "-6":"Network read error",
+    "-7":"Network write error",
+    "-8":"Machine read error",
+    "-9":"Machine write error",
+    "-10" : "Machine no record error",
+    "-11" : "Machine space error",
+    "-12" : "Undefined error" 
+}
