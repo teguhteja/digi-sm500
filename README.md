@@ -48,7 +48,6 @@ WR function means it will write a file into the weighing machine. Some of the co
 digiwtcp will generate a result file after doing the process of sending the file, which contains the ip and the results of the process. that below is meaning of result and can use it in json 
 
 <br/>
-<br/>
 
 ```
 0 = no error
@@ -72,8 +71,15 @@ for documentation please look at [doc/TWSWTCP.pdf](https://github.com/teguhteja/
 ## What files are sent to the weighing machine ?
 Like the example above to send a file using the .DAT format which contains numbers in hex format. Then F37 as a table is used in operations. Try to read other tables using command :
 ```cmd
-digiwtcp.exe RD SM192.168.168.1F1.DAT
+digiwtcp.exe RD 1 192.168.168.1 
 ```
+
+if wrong command in terminal will appear error 
+
+```cmd
+Syntax: DIGIWTCP command file_num machine_1 [machine_2 ... machine_n]
+```
+
 
 After read file from machine will find many empty and filled tables. If it is empty then it will write code 'E2' and it contains data will write Hex data
 
@@ -108,7 +114,7 @@ when made into the description table
 | 5  | UNIT PRICE            | 8         | 01000000                                                | =1.000.000/Kg                                              |
 | 6  | LABEL 1 FORMAT        | 2         | 11                                                      | Default format  from Digi-Net                               |
 | 7  | BARCODE FORMAT        | 2         | 09                                                      | Default format  from Digi-Net                               |
-| 8  | EAN DATA              | 14        | 24000400000000                                          | 32 = code barcode<br> 0004 = plu code                          |
+| 8  | EAN DATA              | 14        | 32000400000000                                          | 32 = code barcode<br> 0004 = plu code                          |
 | 9  | USED BY DATE          | 4         | 0997                                                    | Default format  from Digi-Net                               |
 | 10 | DEF1                  | 50        | 000000000000000 000000000800060 000000000000000<br>0000007 | Default format  from Digi-Net                               |
 | 11 | Name Record Size(NRS) | 2         | 13                                                      | Length of name record.  Hex Format. 13=19(DEC) (19+1)*2=40 |
@@ -149,9 +155,13 @@ or to look easier hex to ascii please look reference [1]
 ## Running in Linux
 
 Please using wine to run the digiwtcp with same command
-
+for RW
 ```sh
 wine digiwtcp [command] SM[IP]F[table].DAT
+```
+and for RD and DEL_FI
+```sh
+wine digiwtcp [command] [table] [IP]
 ```
 
 ### Reference
